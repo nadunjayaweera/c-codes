@@ -43,7 +43,7 @@ void loop(){
   // delay 20 second
  //count = count +1;
  //delay(1);
- //if (buttonState == LOW
+ //if (buttonState == HEIGH
     // turn rilay on:
     //count = 20001;
   //}
@@ -58,9 +58,9 @@ char customKey = customKeypad.getKey(); //this function reads the presed key
     if (character ==0)
   { 
   Pass_char[0]= customKey;
-  digitalWrite(10,HIGH);
+  digitalWrite(10,LOW);
  delay(100);
- digitalWrite(10,LOW);
+ digitalWrite(10,HIGHfive5);
 delay(100); 
  }
 
