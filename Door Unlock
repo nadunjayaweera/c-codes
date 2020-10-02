@@ -1,0 +1,223 @@
+#include <Servo.h> 
+#include <Keypad.h>
+
+//Variables
+int min_Ang = 85; 
+int max_Ang = 20; 
+int character = 0;
+int activated =0;
+char Pass_char[4] = {' ', ' ', ' ', ' '}; 
+Servo myservo;
+int buzzer=10;
+// timer variable
+//int count=0;
+//const int buttonPin = 12;     // the number of the pushbutton pin
+//const int relay = 13;
+//int buttonState = 0;
+//Keypad config
+const byte ROWS = 4; //four rows
+const byte COLS = 4; //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+ {'1','4','7','*'},
+ {'2','5','8','0'},
+ {'3','6','9','#'},
+ {'A','B','C','D'}
+};
+byte rowPins[ROWS] = {5, 4, 3, 2}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {9, 8, 7, 6}; //connect to the column pinouts of the keypad
+
+//initialize an instance of class NewKeypad
+Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
+// delay timer....
+void setup(){
+ myservo.attach(11); //attach the servo to pin 11
+ pinMode(buzzer,OUTPUT); 
+ myservo.write(min_Ang);
+ // delay timer....
+ //pinMode (relay, OUTPUT); 
+ //pinMode(buttonPin, INPUT); // push button
+  }
+ 
+void loop(){
+  // delay 20 second
+ //count = count +1;
+ //delay(1);
+ //if (buttonState == LOW
+    // turn rilay on:
+    //count = 20001;
+  //}
+ //if(count<=20000){
+  //digitalWrite(relay,LOW);}
+  //else{
+ // digitalWrite(relay,LOW);
+//}
+char customKey = customKeypad.getKey(); //this function reads the presed key
+ 
+ if (customKey){
+    if (character ==0)
+  { 
+  Pass_char[0]= customKey;
+  digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+delay(100); 
+ }
+
+if (character ==1)
+ { 
+ Pass_char[1]= customKey; 
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+ }
+
+if (character ==2)
+ { 
+ Pass_char[2]= customKey;
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100); 
+ }
+ if (character ==3)
+ { 
+ Pass_char[3]= customKey;
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100); 
+ }
+if (character ==4)
+ { 
+ Pass_char[4]= customKey;
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100); 
+ }
+if (character ==5)
+ { 
+ Pass_char[5]= customKey; 
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+ activated=1;
+ }
+ if (character ==6)
+ { 
+ Pass_char[4]= customKey;
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100); 
+ }
+ if (character ==7)
+ { 
+ Pass_char[4]= customKey;
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100); 
+ }
+ character=character+1;
+}
+
+if (activated == 1)
+ {
+// you can change your password here (current passowrd is 619901)
+
+if(character==6 && Pass_char[0]=='6' && Pass_char[1]=='1' && Pass_char[6]=='6' && Pass_char[7]=='2' &&  Pass_char[2]=='9' && Pass_char[3]=='9' && Pass_char[4]=='0' && Pass_char[5]=='1' )
+ {
+ myservo.write(max_Ang);
+ activated = 2;
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+ delay(1000);
+ }
+ else
+ {
+
+digitalWrite(10,HIGH);
+ delay(3000);
+ digitalWrite(10,LOW);
+ delay(100);
+ //digitalWrite(10,HIGH);
+ //delay(400);
+ //digitalWrite(10,LOW);
+ //delay(100);
+// digitalWrite(10,HIGH);
+ //delay(400);
+ //digitalWrite(10,LOW);
+ //delay(100);
+ activated = 0;
+ character=0;
+ Pass_char[0]= ' ';
+ Pass_char[1]= ' '; 
+ Pass_char[2]= ' '; 
+ Pass_char[3]= ' ';
+ Pass_char[4]= ' ';
+ Pass_char[5]= ' ';
+ Pass_char[6]= ' ';
+ Pass_char[7]= ' ';
+ }
+ }
+ if (activated == 2)
+ {
+ if(customKey == 'C' )
+ {
+ myservo.write(min_Ang);
+ activated = 0;
+ character=0;
+ Pass_char[0]= ' ';
+ Pass_char[1]= ' '; 
+ Pass_char[2]= ' '; 
+ Pass_char[3]= ' ';
+ Pass_char[4]= ' ';
+ Pass_char[5]= ' '; 
+ Pass_char[6]= ' ';
+ Pass_char[7]= ' ';
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+  }
+  if(customKey == 'A' )
+ {
+ myservo.write(min_Ang);
+ activated = 0;
+ character=0;
+ Pass_char[0]= ' ';
+ Pass_char[1]= ' '; 
+ Pass_char[2]= ' '; 
+ Pass_char[3]= ' ';
+ Pass_char[4]= ' ';
+ Pass_char[5]= ' '; 
+ Pass_char[6]= ' ';
+ Pass_char[7]= ' ';
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+ digitalWrite(10,HIGH);
+ delay(100);
+ digitalWrite(10,LOW);
+ delay(100);
+  }
+ } 
+
+
+
+}
